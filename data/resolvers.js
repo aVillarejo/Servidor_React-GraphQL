@@ -4,6 +4,12 @@ import { rejects } from "assert";
 
 export const resolvers = {
   Query: {
+    consulta: root => {
+      return Productos.find({ precio: 815 });
+    },
+    consulta2: (root, { name }) => {
+      return Productos.find({ nombre: new RegExp("^" + name + "$", "i") });
+    },
     // Clientes
     getClientes: (root, { limite, offset }) => {
       return Clientes.find({})
@@ -101,8 +107,9 @@ export const resolvers = {
 
     //Mutations de Clientes
 
-    nuevoProducto: (root, { input }) => {
+    crearProducto: (root, { input }) => {
       const nuevoProducto = new Productos({
+        clave: input.clave,
         nombre: input.nombre,
         precio: input.precio,
         stock: input.stock

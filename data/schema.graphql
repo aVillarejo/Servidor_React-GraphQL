@@ -20,6 +20,7 @@ type Email {
 
 type Producto {
   id: ID
+  clave: String!
   nombre: String!
   precio: Float!
   stock: Int!
@@ -52,6 +53,7 @@ input ClienteInput {
 
 input ProductoInput {
   id: ID
+  clave: String!
   nombre: String!
   precio: Float!
   stock: Int!
@@ -62,6 +64,8 @@ type Query {
   getClientes(limite: Int, offset: Int): [Cliente]
   getCliente(id: ID!): Cliente
   totalClientes: String
+  consulta: [Producto]
+  consulta2(name: String): [Producto]
   # Productos
   getProductos(limite: Int, offset: Int): [Producto]
   getProducto(id: ID!): Producto
@@ -75,7 +79,7 @@ type Mutation {
   eliminarCliente(id: ID!): String
 
   # Productos
-  nuevoProducto(input: ProductoInput): Producto
+  crearProducto(input: ProductoInput): Producto
   actualizarProducto(input: ProductoInput): Producto
   eliminarProducto(id: ID!): String
 }

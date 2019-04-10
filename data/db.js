@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
-
-mongoose.connect("mongodb://localhost/clientes", { useNewUrlParser: true });
+const URI =
+  "mongodb+srv://AdminAV:soporte123$@clusterav-qx4cd.mongodb.net/SISDE?retryWrites=true";
+const local = "mongodb://localhost/CRM_db";
+mongoose.connect(URI, { useNewUrlParser: true });
 mongoose.set("findAndModify", false);
 
 //Definir schema de Clientes
@@ -18,6 +20,7 @@ const clientesSchema = new mongoose.Schema({
 
 //Definir schema de Productos
 const productosSchema = new mongoose.Schema({
+  clave: String,
   nombre: String,
   precio: Number,
   stock: Number
