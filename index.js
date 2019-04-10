@@ -18,7 +18,7 @@ const server = new ApolloServer({
     //endpoint: `http://localhost:4000/graphql`,
     settings: {
       "editor.theme": "dark",
-      introspection: true
+      "introspection": true
     }
   }
 });
