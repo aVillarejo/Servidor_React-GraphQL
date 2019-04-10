@@ -11,7 +11,17 @@ const app = express();
 // app.use(cors());
 
 //Creaccion del servidor de apollo, requiere defs y resolvers
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  playground: {
+    //endpoint: `http://localhost:4000/graphql`,
+    settings: {
+      "editor.theme": "dark",
+      introspection: true
+    }
+  }
+});
 
 //Coneccion entre Apollo y express
 server.applyMiddleware({ app });
