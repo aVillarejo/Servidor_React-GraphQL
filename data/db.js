@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
 const URI =
-  "mongodb+srv://AdminAV:soporte123$@clusterav-qx4cd.mongodb.net/SISDE?retryWrites=true";
+  "mongodb+srv://AdminAV:soporte123$@clusterav-qx4cd.mongodb.net/CRM_DB?retryWrites=true";
 const local = "mongodb://localhost/CRM_db";
 mongoose.connect(URI, { useNewUrlParser: true });
 mongoose.set("findAndModify", false);
