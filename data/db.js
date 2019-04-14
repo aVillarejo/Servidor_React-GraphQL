@@ -1,10 +1,17 @@
 import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
-const URI =
-  "mongodb+srv://AdminAV:soporte123$@clusterav-qx4cd.mongodb.net/CRM_DB?retryWrites=true";
-const local = "mongodb://localhost/CRM_db";
-mongoose.connect(URI, { useNewUrlParser: true });
+
+let mongoUserCredentials = "";
+if (process.env.MONGO_USER && process.env.MONGO_PASSWORD) {
+  mongoUserCredentials = `${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@`;
+}
+
+const MONGO_URL = process.env.MONGO_URL|| "localhost:27017" ;
+const DB_NAME = process.env.MONGO_DB_NAME|| "CRM_DB"; 
+const MONGO_CONNECTION_STRING = `mongodb://${mongoUserCredentials}${MONGO_URL}/${DB_NAME}`;
+
+mongoose.connect(MONGO_CONNECTION_STRING, { useNewUrlParser: true });
 mongoose.set("findAndModify", false);
 
 //Definir schema de Clientes
